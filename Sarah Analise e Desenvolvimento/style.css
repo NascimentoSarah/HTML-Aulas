@@ -1,0 +1,18 @@
+@font-face {
+    font-family: 'pudim';
+    src: url('Bring\ Race.otf');
+}
+
+body {
+    background-color: #F2DDFF;
+}
+
+div {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: #820ECC;
+    font-family:'pudim';
+}
