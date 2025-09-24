@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Avaliação Web II</title>
+
+  <style>
+    body {
+      margin: 0;
+      display: grid;
+      grid-template-areas:
+        "header header"
+        "aside section"
+        "aside article1"
+        "aside article2"
+        "footer footer";
+      grid-template-columns: 200px 1fr;
+      grid-template-rows: auto auto auto auto auto;
+      background: linear-gradient(to right, lightgray, white); /* degradê */
+      gap: 10px;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      grid-area: header;
+      background: #ccc;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav {
+      display: flex;
+      gap: 5px;
+    }
+
+    aside {
+      grid-area: aside;
+      background: #eee;
+      padding: 10px;
+    }
+
+    aside ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    aside ul li {
+      margin: 10px 0;
+    }
+
+    aside ul li a {
+      text-decoration: none;
+      color: blue;
+    }
+
+    section {
+      grid-area: section;
+      padding: 10px;
+      background: #fafafa;
+    }
+
+    article:nth-of-type(1) {
+      grid-area: article1;
+      padding: 10px;
+      background: #f9f9f9;
+    }
+
+    article:nth-of-type(2) {
+      grid-area: article2;
+      padding: 10px;
+      background: #f1f1f1;
+    }
+
+    footer {
+      grid-area: footer;
+      background: #ccc;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HEADER</h1>
+    <nav>
+      <input type="text" placeholder="Login">
+      <input type="password" placeholder="Senha">
+      <button>Entrar</button>
+    </nav>
+  </header>
+
+  <aside>
+    <h2>Menu</h2>
+    <ul>
+      <li><a href="pagina1.html" target="_blank">Página 1</a></li>
+      <li><a href="pagina2.html" target="_blank">Página 2</a></li>
+      <li><a href="https://www.google.com" target="_blank">Externa</a></li>
+    </ul>
+  </aside>
+
+  <section>
+    <img src="https://via.placeholder.com/400x200" alt="Imagem exemplo">
+  </section>
+
+  <article>
+    <h3>ARTICLE 1</h3>
+    <p>Conteúdo demonstrativo.</p>
+  </article>
+
+  <article>
+    <h3>ARTICLE 2</h3>
+    <p>Outro conteúdo demonstrativo.</p>
+  </article>
+
+  <footer>
+    Trabalho realizado por [Seu Nome]
+  </footer>
+</body>
+</html>
