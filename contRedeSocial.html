@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarahbook</title>
+    <style>
+        @font-face {
+            font-family: "Game Of Squids";
+            src: url(Game\ Of\ Squids.otf);
+        }
+        body{
+            font-family: "Game Of Squids", sans-serif;
+            background: #808080;
+            color: black;            
+        }
+         header {
+            background: #696969;
+            padding: 10px 20px;
+            border-bottom: 1px solid #3f3a3a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        } 
+        main {
+            font-family: Arial, sans-serif;
+            background:  #696969;
+            margin: 0;
+        }
+
+        .stories {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto; /* permite rolar para o lado */
+            padding: 10px;
+            background: rgb(170, 170, 170);
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .story {
+            text-align: center;
+            flex: 00 auto; /* impede que encolha */
+        }
+
+        .story img {
+            width: 70px;
+            height:70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #610de9; 
+            padding: 2px;
+            transition: .25s;
+        }
+        .story img:hover{
+            transform: scale(1.1);
+        }
+
+        .story span {
+            display: block;
+            margin-top: 5px;
+            font-size: 13px;
+            color: #333;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <div><h1>InstaBook</h1><hr></div>
+    </header>
+    
+    <main>
+        <div class="stories">
+            <div class="story">
+                <img src="https://i.pinimg.com/736x/14/5f/8f/145f8f2a961f97e02ee5e03c3afbb2c1.jpg" alt="Ana">
+                <span>Ana</span>
+        </div>
+        <div class="story">
+            <img src="https://i.pravatar.cc/100?img=2" alt="Bruno">
+            <span>Bruno</span>
+        </div>
+        <div class="story">
+            <img src="https://i.pinimg.com/1200x/ee/d6/e6/eed6e6cc4d4bba83fbc9d0115e5c5fdf.jpg" alt="Carla">
+            <span>Carla</span>
+        </div>
+        <div class="story">
+            <img src="https://i.pinimg.com/736x/f1/98/96/f19896a24cba5473058d478ceba20d11.jpg" alt="Diego">
+            <span>Diego</span>
+        </div>
+        </div>
+    </main>
+    <aside>
+        <button class="configbuttons">
+            <div>
+                <img class="confiming" src="email_send_message_envelopme_electronic_icon-icons.com_59988.ico" alt="">
+            </div>
+        </button>
+        <button class="configbuttons">
+            <div>
+                <img class="confiming" src="3643769-building-home-house-main-menu-start_113416.ico" alt="">
+            </div>
+        </button>
+        <button class="configbuttons">
+            <div>
+                <img class="confiming" src="loupe_79257.ico" alt="">
+            </div>
+        </button>
+        <button class="configbuttons">
+            <div>
+                <img class="confiming" src="" alt="">
+            </div>
+        </button>
+    </aside>
+</body>
+</html>
