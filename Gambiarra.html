@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarahbook</title>
+    <style>
+        @font-face {
+            font-family: "Game Of Squids";
+            src: url(Game\ Of\ Squids.otf);
+        }
+
+        body {
+            background: white;
+            color: black;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+        }
+
+        header {
+            background: rgba(131, 124, 127, 0.986);
+            padding: 10px 20px;
+            border-bottom: 1px solid #000002;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        h1 {
+            font-family: "Game Of Squids", sans-serif;
+        }
+
+        /* --- BARRA LATERAL ESQUERDA --- */
+        aside {
+            width: 100px;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            bottom: 0;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding-top: 20px;
+            border-right: 1px solid #ccc;
+            z-index: 50;
+        }
+
+        .buttons {
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .buttons:hover {
+            transform: scale(1.1);
+        }
+
+        .buttons img {
+            width: 60px;
+            height: 60px;
+        }
+
+        /* --- CONTEÚDO CENTRAL --- */
+        main {
+            flex: 1;
+            margin-left: 130px; /* espaço para a barra lateral */
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .stories {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px;
+            background: rgb(253, 252, 253);
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            width: 500px;
+            margin-bottom: 20px;
+        }
+
+        .story {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .story img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #610de9;
+            padding: 2px;
+            transition: .25s;
+        }
+
+        .story img:hover {
+            transform: scale(1.1);
+        }
+
+        .feed {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            width: 500px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .post {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            background: white;
+            position: relative;
+        }
+
+        .post img {
+            width: 100%;
+            display: block;
+        }
+
+        .username {
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            background: rgba(255,255,255,0.7);
+            padding: 3px 7px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .post-info {
+            padding: 10px;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 5px 10px;
+        }
+
+        .actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        .like-button.liked {
+            color: rgb(255, 102, 102);
+        }
+
+        .comment-section {
+            padding: 0 10px 10px;
+        }
+
+        .comment-section input {
+            width: 80%;
+            padding: 5px;
+            margin-right: 5px;
+        }
+
+        .comment {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- BOTÕES À ESQUERDA -->
+    <aside>
+        <button class="buttons">
+            <img src="botao-play.png" alt="Botão Storys">
+        </button>
+        <button class="buttons">
+            <img src="3643769-building-home-house-main-menu-start_113416.ico" alt="Botão Home">
+        </button>
+        <button class="buttons">
+            <img src="loupe_79257.ico" alt="Botão Buscar">
+        </button>
+    </aside>
+
+    <main>
+        <div>
+            <header>
+                <h1>InstaBook</h1>
+                <div><button>Feed</button><button>Perfil</button><button>mensagens</button></div>
+            </header>
+
+            <div class="stories">
+                <div class="story" onclick="abrirStory('Ana')">
+                    <img src="https://i.pinimg.com/736x/14/5f/8f/145f8f2a961f97e02ee5e03c3afbb2c1.jpg" alt="Ana">
+                    <span>Ana</span>
+                </div>
+                <div class="story" onclick="abrirStory('Bruno')">
+                    <img src="https://i.pravatar.cc/100?img=2" alt="Bruno">
+                    <span>Bruno</span>
+                </div>
+                <div class="story" onclick="abrirStory('Carla')">
+                    <img src="https://i.pinimg.com/1200x/ee/d6/e6/eed6e6cc4d4bba83fbc9d0115e5c5fdf.jpg" alt="Carla">
+                    <span>Carla</span>
+                </div>
+                <div class="story" onclick="abrirStory('Diego')">
+                    <img src="https://i.pinimg.com/736x/f1/98/96/f19896a24cba5473058d478ceba20d11.jpg" alt="Diego">
+                    <span>Diego</span>
+                </div>
+            </div>
+
+            <section class="feed">
+                <article class="post">
+                    <span class="username">@Usuário</span>
+                    <img src="https://i.pinimg.com/736x/23/cc/a3/23cca30c97aa1368ded37bbca1ef3b3a.jpg" alt="">
+                    <div class="actions">
+                        <button class="like-button">♡</button>
+                        <button class="comment-button">💬</button>
+                    </div>
+                    <div class="post-info">
+                        <p>Brincando com o pet</p>
+                    </div>
+                    <div class="comment-section">
+                        <input type="text" placeholder="Escreva um comentário...">
+                        <button class="send-comment">Enviar</button>
+                        <div class="comments"></div>
+                    </div>
+                </article>
+
+                <article class="post">
+                    <span class="username">@Usuária</span>
+                    <img src="https://i.pinimg.com/736x/20/c8/10/20c810547f030efda0395e4e20e1c222.jpg" alt="">
+                    <div class="actions">
+                        <button class="like-button">♡</button>
+                        <button class="comment-button">💬</button>
+                    </div>
+                    <div class="post-info">
+                        <p>Girls night</p>
+                    </div>
+                    <div class="comment-section">
+                        <input type="text" placeholder="Escreva um comentário...">
+                        <button class="send-comment">Enviar</button>
+                        <div class="comments"></div>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Curtidas
+        document.querySelectorAll('.like-button').forEach(button => {
+            button.addEventListener('click', () => {
+                button.classList.toggle('liked');
+                button.textContent = button.classList.contains('liked') ? '❤' : '♡';
+            });
+        });
+
+        // Comentários
+        document.querySelectorAll('.send-comment').forEach(button => {
+            button.addEventListener('click', () => {
+                const section = button.parentElement;
+                const input = section.querySelector('input');
+                const commentBox = section.querySelector('.comments');
+                if (input.value.trim() !== "") {
+                    const newComment = document.createElement('div');
+                    newComment.classList.add('comment');
+                    newComment.textContent = input.value;
+                    commentBox.appendChild(newComment);
+                    input.value = "";
+                }
+            });
+        });
+
+        // Ação dos storys
+        function abrirStory(nome) {
+            alert("Entrando no story de " + nome + "...");
+        }
+    </script>
+</body>
+</html>
