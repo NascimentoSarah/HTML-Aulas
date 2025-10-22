@@ -11,13 +11,13 @@
         }
         body{
             font-family: "Game Of Squids", sans-serif;
-            background: #808080;
+            background: white;
             color: black;            
         }
          header {
-            background: #696969;
+            background:rgba(131, 124, 127, 0.986);
             padding: 10px 20px;
-            border-bottom: 1px solid #3f3a3a;
+            border-bottom: 1px solid #000002;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -27,7 +27,7 @@
         } 
         main {
             font-family: Arial, sans-serif;
-            background:  #696969;
+            background:  white;
             margin: 0;
         }
 
@@ -36,7 +36,7 @@
             gap: 15px;
             overflow-x: auto; /* permite rolar para o lado */
             padding: 10px;
-            background: rgb(170, 170, 170);
+            background: rgb(253, 252, 253);
             border: 1px solid #ddd;
             border-radius: 10px;
         }
@@ -65,13 +65,21 @@
             font-size: 13px;
             color: #333;
         }
+        post{
+            align-items: center;
+            font-family: 'Times New Roman', Times, serif;
+            }
+        post-info{
+            text-align: center;
+        }    
         
     </style>
 </head>
 
 <body>
     <header>
-        <div><h1>InstaBook</h1><hr></div>
+        <h1>InstaBook</h1><hr>
+        <div><h3>Feed Perfil Mensagens</h3></div>
     </header>
     
     <main>
@@ -95,26 +103,37 @@
         </div>
     </main>
     <aside>
-        <button class="configbuttons">
+        <button class="buttons">
             <div>
-                <img class="confiming" src="email_send_message_envelopme_electronic_icon-icons.com_59988.ico" alt="">
+                <img style="width: 130px; height: 128px;" class="side button" src="botao-play.png" alt="">
             </div>
         </button>
-        <button class="configbuttons">
+        <button class="buttons">
             <div>
-                <img class="confiming" src="3643769-building-home-house-main-menu-start_113416.ico" alt="">
+                <img class="side button" src="3643769-building-home-house-main-menu-start_113416.ico" alt="">
             </div>
         </button>
-        <button class="configbuttons">
+        <button class="buttons">
             <div>
-                <img class="confiming" src="loupe_79257.ico" alt="">
-            </div>
-        </button>
-        <button class="configbuttons">
-            <div>
-                <img class="confiming" src="" alt="">
+                <img class="side button" src="loupe_79257.ico" alt="">
             </div>
         </button>
     </aside>
+    <section class="feed">
+        <article class="post">
+            <img src="https://i.pinimg.com/736x/23/cc/a3/23cca30c97aa1368ded37bbca1ef3b3a.jpg" alt="">
+            <div class="post-info">
+                <b><h2>@Usuário</h2></b>
+                <p>Brincando com o pet</p>
+            </div>
+        </article>
+         <article class="post">
+            <img src="https://i.pinimg.com/736x/20/c8/10/20c810547f030efda0395e4e20e1c222.jpg" alt="">
+            <div class="post-info">
+                <b><h2>@Usuária</h2></b>
+                <p>Girls night</p>
+            </div>
+        </article>
+    </section>
 </body>
 </html>

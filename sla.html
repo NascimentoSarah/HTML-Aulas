@@ -1,0 +1,223 @@
+<!doctype html>
+
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mini Instagram - Rede Social Demo</title>
+  <style>
+    :root{--bg:#fafafa;--card:#fff;--muted:#8e8e8e;--accent:#3897f0}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial; background:var(--bg); color:#111}
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid #e6e6e6;background:#fff;position:sticky;top:0;z-index:10}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand img{height:34px}
+    .search{flex:1;max-width:420px;margin:0 16px}
+    .search input{width:100%;padding:8px 12px;border-radius:8px;border:1px solid #e6e6e6}main{max-width:980px;margin:24px auto;display:grid;grid-template-columns:1fr 320px;gap:24px;padding:0 12px}
+.feed{display:flex;flex-direction:column;gap:18px}
+
+/* Stories */
+.stories{display:flex;gap:12px;padding:12px;background:var(--card);border:1px solid #ececec;border-radius:12px;overflow:auto}
+.story{min-width:72px;text-align:center}
+.story img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)}
+.story span{display:block;font-size:12px;margin-top:6px;color:var(--muted)}
+
+/* Post card */
+.card{background:var(--card);border:1px solid #e6e6e6;border-radius:12px;overflow:hidden}
+.card .meta{display:flex;align-items:center;padding:12px}
+.avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;margin-right:10px}
+.meta .user{font-weight:600}
+.post-img{width:100%;max-height:640px;object-fit:cover;background:#ddd}
+.actions{padding:10px 12px;display:flex;align-items:center;gap:12px}
+.actions button{background:none;border:0;cursor:pointer;font-size:18px}
+.likes{padding:0 12px 8px;font-weight:600}
+.caption{padding:0 12px 12px;color:#222}
+.comments{padding:0 12px 12px;color:var(--muted);font-size:14px}
+.add-comment{display:flex;border-top:1px solid #f0f0f0;padding:8px}
+.add-comment input{flex:1;padding:8px;border-radius:20px;border:1px solid #e6e6e6}
+.add-comment button{margin-left:8px;padding:8px 12px;border-radius:20px;border:0;background:var(--accent);color:#fff;cursor:pointer}
+
+/* Right column */
+.sidebar{position:sticky;top:88px}
+.profile{display:flex;align-items:center;gap:12px;padding:12px;background:var(--card);border-radius:12px;border:1px solid #e6e6e6}
+.profile img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.profile .info{font-size:14px}
+.suggestions{margin-top:12px;padding:12px;background:var(--card);border-radius:12px;border:1px solid #e6e6e6}
+.suggestions h4{margin:0 0 8px 0}
+.suggest-item{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+
+/* New post area */
+.new-post{display:flex;gap:8px;align-items:center;padding:12px;background:var(--card);border-radius:12px;border:1px solid #e6e6e6}
+.new-post input{flex:1;padding:8px;border-radius:8px;border:1px solid #e6e6e6}
+.new-post button{padding:8px 12px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer}
+
+/* Responsive */
+@media(max-width:980px){main{grid-template-columns:1fr} .sidebar{position:static}}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34'><rect width='34' height='34' rx='6' fill='%233897f0'/><text x='50%' y='58%' fill='white' font-size='18' font-family='Arial' text-anchor='middle' font-weight='700'>IG</text></svg>" alt="logo">
+      Mini Instagram
+    </div>
+    <div class="search"><input placeholder="Pesquisar" id="searchInput"></div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <button id="homeBtn">Início</button>
+      <button id="exploreBtn">Explorar</button>
+      <button id="profileBtn">Perfil</button>
+    </div>
+  </header>  <main>
+    <section class="feed">
+      <div class="stories card" id="stories"></div><div class="new-post" aria-label="Criar novo post">
+    <input id="newImgUrl" placeholder="URL da imagem" />
+    <input id="newCaption" placeholder="Legenda (opcional)" />
+    <button id="publishBtn">Publicar</button>
+  </div>
+
+  <div id="posts"></div>
+</section>
+
+<aside class="sidebar">
+  <div class="profile">
+    <img id="myAvatar" src="https://i.pravatar.cc/150?img=32" alt="avatar">
+    <div class="info">
+      <div style="font-weight:700">meu_usuario</div>
+      <div style="color:var(--muted);font-size:13px">Meu nome • Bio curta</div>
+    </div>
+  </div>
+
+  <div class="suggestions">
+    <h4>Sugestões para você</h4>
+    <div id="suggestList"></div>
+  </div>
+</aside>
+
+  </main>  <template id="postTemplate">
+    <article class="card post">
+      <div class="meta">
+        <img class="avatar" src="" alt="avatar">
+        <div>
+          <div class="user"></div>
+          <div class="when" style="font-size:12px;color:var(--muted)"></div>
+        </div>
+      </div>
+      <img class="post-img" src="" alt="post">
+      <div class="actions">
+        <button class="likeBtn">♡</button>
+        <button class="commentBtn">💬</button>
+        <button class="shareBtn">✈️</button>
+      </div>
+      <div class="likes">0 curtidas</div>
+      <div class="caption"><strong class="user"></strong> <span class="text"></span></div>
+      <div class="comments"></div>
+      <div class="add-comment">
+        <input placeholder="Adicione um comentário..." class="commentInput">
+        <button class="sendComment">Publicar</button>
+      </div>
+    </article>
+  </template>  <script>
+    // Dados iniciais (pode ser substituído por uma API)
+    const postsData = [
+      {id:1,user:'ana',avatar:'https://i.pravatar.cc/150?img=12',img:'https://picsum.photos/800/900?random=1',caption:'Pôr-do-sol incrível!',likes:128,comments:[{user:'maria',text:'lindo!'},{user:'joao',text:'uau'}],when:'2h'} ,
+      {id:2,user:'bruno',avatar:'https://i.pravatar.cc/150?img=5',img:'https://picsum.photos/800/900?random=2',caption:'Café da manhã',likes:54,comments:[],when:'1d'}
+    ];
+
+    const storiesData = [
+      {user:'ana',img:'https://i.pravatar.cc/100?img=12'},
+      {user:'bruno',img:'https://i.pravatar.cc/100?img=5'},
+      {user:'carol',img:'https://i.pravatar.cc/100?img=15'},
+      {user:'davi',img:'https://i.pravatar.cc/100?img=20'}
+    ];
+
+    const suggestions = ['carlos','laura','pedro'];
+
+    // Renderizar stories
+    const storiesEl = document.getElementById('stories');
+    storiesData.forEach(s => {
+      const d = document.createElement('div'); d.className='story';
+      d.innerHTML = <img src="${s.img}" alt="${s.user}"><span>${s.user}</span>;
+      storiesEl.appendChild(d);
+    });
+
+    // Renderizar sugestões
+    const suggestList = document.getElementById('suggestList');
+    suggestions.forEach(s=>{
+      const el = document.createElement('div'); el.className='suggest-item';
+      el.innerHTML = <div style='display:flex;align-items:center;gap:8px'><img src='https://i.pravatar.cc/40?u=${s}' style='width:36px;height:36px;border-radius:50%'><div>${s}</div></div><button onclick="follow('${s}')">Seguir</button>;
+      suggestList.appendChild(el);
+    });
+
+    function follow(u){alert('Agora você segue '+u)}
+
+    // Renderizar posts
+    const postsEl = document.getElementById('posts');
+    const template = document.getElementById('postTemplate');
+
+    function renderPosts(list){
+      postsEl.innerHTML='';
+      list.slice().reverse().forEach(p=>{
+        const node = template.content.cloneNode(true);
+        node.querySelectorAll('.user').forEach(n=>n.textContent = p.user);
+        node.querySelector('.avatar').src = p.avatar;
+        node.querySelector('.post-img').src = p.img;
+        node.querySelector('.post-img').alt = p.caption || 'post';
+        node.querySelector('.text').textContent = p.caption || '';
+        node.querySelector('.likes').textContent = p.likes + ' curtidas';
+        node.querySelector('.when').textContent = p.when;
+
+        // Comments
+        const commentsEl = node.querySelector('.comments');
+        if(p.comments && p.comments.length){
+          commentsEl.innerHTML = p.comments.map(c=><div><strong>${c.user}</strong> ${c.text}</div>).join('');
+        }
+
+        // Like handling
+        const likeBtn = node.querySelector('.likeBtn');
+        likeBtn.addEventListener('click',()=>{
+          const liked = likeBtn.textContent === '♥';
+          likeBtn.textContent = liked ? '♡' : '♥';
+          p.likes += liked ? -1 : 1;
+          node.querySelector('.likes').textContent = p.likes + ' curtidas';
+        });
+
+        // Comment posting
+        const sendBtn = node.querySelector('.sendComment');
+        sendBtn.addEventListener('click',()=>{
+          const input = node.querySelector('.commentInput');
+          const val = input.value.trim();
+          if(!val) return;
+          p.comments = p.comments || [];
+          p.comments.push({user:'meu_usuario',text:val});
+          input.value='';
+          renderPosts(postsData);
+        });
+
+        postsEl.appendChild(node);
+      });
+    }
+
+    renderPosts(postsData);
+
+    // Publicar novo post
+    document.getElementById('publishBtn').addEventListener('click',()=>{
+      const url = document.getElementById('newImgUrl').value.trim();
+      const cap = document.getElementById('newCaption').value.trim();
+      if(!url){alert('Coloque a URL de uma imagem.');return}
+      const newPost = {id:Date.now(),user:'meu_usuario',avatar:document.getElementById('myAvatar').src,img:url,caption:cap,likes:0,comments:[],when:'agora'};
+      postsData.push(newPost);
+      document.getElementById('newImgUrl').value='';document.getElementById('newCaption').value='';
+      renderPosts(postsData);
+    });
+
+    // Busca simples
+    document.getElementById('searchInput').addEventListener('input',e=>{
+      const q = e.target.value.toLowerCase();
+      if(!q){renderPosts(postsData);return}
+      const filtered = postsData.filter(p=>p.user.toLowerCase().includes(q) || (p.caption||'').toLowerCase().includes(q));
+      renderPosts(filtered);
+    });
+
+  </script></body>
+</html>
