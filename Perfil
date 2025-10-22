@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil - Sarahbook</title>
+<style>
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    background: #fff;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header {
+    background: rgba(131, 124, 127, 0.986);
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    border-bottom: 1px solid #000;
+  }
+
+  header h1 {
+    font-size: 28px;
+    margin: 0;
+  }
+
+  .profile {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .profile img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #610de9;
+  }
+
+  .profile h2 {
+    margin: 10px 0 5px;
+  }
+
+  .profile p {
+    color: #444;
+    font-size: 15px;
+  }
+
+  .posts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 90%;
+    max-width: 600px;
+    margin-top: 30px;
+  }
+
+  .posts img {
+    width: 100%;
+    border-radius: 10px;
+  }
+
+  .voltar {
+    margin-top: 20px;
+    background: #610de9;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .voltar:hover {
+    background: #4a0bb3;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Perfil</h1>
+</header>
+
+<section class="profile">
+  <img src="Foto perfil.jpg" alt="Foto de Perfil">
+  <h2>@SarahCristina</h2>
+  <p>Tecnologia e café 💻☕</p>
+  <p>18y</p>
+</section>
+
+<section class="posts">
+  <img src="vaca.jpg" alt="Post 1">
+  <img src="ovelhas.jpg" alt="Post 2">
+  <img src="cavalho.jpg" alt="Post 3">
+</section>
+
+<button class="voltar" onclick="window.location.href='contRedeSocial.html'">Voltar ao Feed</button>
+
+</body>
+</html>
